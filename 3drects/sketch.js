@@ -1,6 +1,5 @@
 var diff;
 var xOffset, yOffset;
-var xPointOffset, yPointOffset;
 var colors;
 var rects;
 
@@ -35,13 +34,8 @@ function draw() {
   background(colors[0].red, colors[0].green, colors[0].blue);
   noStroke();
 
-  if (mouseIsPressed) {
-    xPointOffset = (mouseX - (window.innerWidth / 2.0)) / rects;
-    yPointOffset = (mouseY - (window.innerHeight / 2.0)) / rects;
-  } else {
-    xOffset = (mouseX - (window.innerWidth / 2.0)) / rects;
-    yOffset = (mouseY - (window.innerHeight / 2.0)) / rects;
-  }
+  xOffset = (mouseX - (window.innerWidth / 2.0)) / rects;
+  yOffset = (mouseY - (window.innerHeight / 2.0)) / rects;
 
   for (var x = 0; x < rects; x++) {
     var offsetX = (x * (window.innerWidth / rects));
