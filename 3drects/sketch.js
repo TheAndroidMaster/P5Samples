@@ -2,6 +2,7 @@ var diff;
 var xOffset, yOffset;
 var xPointOffset, yPointOffset;
 var colors;
+var rects;
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
@@ -11,12 +12,13 @@ function setup() {
   yOffset = 0;
   xPointOffset = 0;
   yPointOffset = 0;
+  rects = 10;
 
   colors = {};
   var red = 50;
   var green = 100;
   var blue = 255;
-  for (var i = 0; i < 100; i++) {
+  for (var i = 0; i < rects * rects; i++) {
     colors[i] = {
       "red": red,
       "green": green,
@@ -34,24 +36,41 @@ function draw() {
   noStroke();
 
   if (mouseIsPressed) {
-    xPointOffset = (mouseX - (window.innerWidth / 2.0)) / 10;
-    yPointOffset = (mouseY - (window.innerHeight / 2.0)) / 10;
+    xPointOffset = (mouseX - (window.innerWidth / 2.0)) / rects;
+    yPointOffset = (mouseY - (window.innerHeight / 2.0)) / rects;
   } else {
-    xOffset = (mouseX - (window.innerWidth / 2.0)) / 10;
-    yOffset = (mouseY - (window.innerHeight / 2.0)) / 10;
+    xOffset = (mouseX - (window.innerWidth / 2.0)) / rects;
+    yOffset = (mouseY - (window.innerHeight / 2.0)) / rects;
   }
 
-  for (var x = 0; x < 10; x++) {
-    var offsetX = (x * (window.innerWidth / 10));
+  for (var x = 0; x < rects; x++) {
+    var offsetX = (x * (window.innerWidth / rects));
     for (var y = 0; y < 10; y++) {
-      var offsetY = (y * (window.innerHeight / 10));
+      var offsetY = (y * (window.innerHeight / rects));
 
       offsetX += (xOffset * y);
       offsetY += (yOffset * x);
 
       var color = colors[x * y];
       fill(color.red, color.green, color.blue);
-      rect(offsetX, offsetY, offsetX + window.innerWidth / 10, offsetY + window.innerHeight / 10);
+      rect(offsetX, offsetY, offsetX + window.innerWidth / rects, offsetY + window.innerHeight / rects);
     }
+  }
+}
+
+function mouseClicked() {
+  var red = Math.random() * 245 + 10;
+  var green = Math.random() * 245 + 10;
+  var blue = Math.random() * 245 + 10;
+  for (var i = 0; i < rects * rects; i++) {
+    colors[i] = {
+      "red": red,
+      "green": green,
+      "blue": blue
+    }
+
+    red /= 1.05;
+    green /= 1.05;
+    blue /= 1.05;
   }
 }
