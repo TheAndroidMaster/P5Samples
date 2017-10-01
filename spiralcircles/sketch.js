@@ -1,7 +1,6 @@
 var diff;
 var xOffset, yOffset;
 var aOffset;
-var cRed, cGreen, cBlue;
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
@@ -10,21 +9,19 @@ function setup() {
   xOffset = 0;
   yOffset = 0;
   aOffset = 0;
-  cRed = Math.random() * 200;
-  cGreen = Math.random() * 200;
-  cBlue = Math.random() * 200;
 }
 
 function draw() {
-  background(cRed, cGreen, cBlue);
-  noStroke();
 
   xOffset = (((mouseX - (window.innerWidth / 2.0)) / 10000) + (xOffset * 5)) / 6;
   yOffset = (((mouseY - (window.innerHeight / 2.0)) / 10000) + (yOffset * 5)) / 6;
 
-  var aRed = cRed;
-  var aGreen = cGreen;
-  var aBlue = cBlue;
+  var aRed = Math.sin(.05 * aOffset) * 100 + 100;
+  var aGreen = Math.sin(.05 * aOffset + 2) * 100 + 100;
+  var aBlue = Math.sin(.05 * aOffset + 4) * 100 + 100;
+
+  background(aRed, aGreen, aBlue);
+  noStroke();
 
   for (var r = Math.max(window.innerWidth / 2, window.innerHeight / 2), a = 0; r > 0; r -= 3) {
     var x = window.innerWidth / 2, y = window.innerHeight / 2;
@@ -41,10 +38,4 @@ function draw() {
   }
 
   aOffset++;
-}
-
-function mouseClicked() {
-  cRed = Math.random() * 200;
-  cGreen = Math.random() * 200;
-  cBlue = Math.random() * 200;
 }
