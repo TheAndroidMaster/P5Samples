@@ -19,8 +19,8 @@ function draw() {
   background(cRed, cGreen, cBlue);
   noStroke();
 
-  xOffset = (mouseX - (window.innerWidth / 2.0)) / 10000;
-  yOffset = (mouseY - (window.innerHeight / 2.0)) / 10000;
+  xOffset = (((mouseX - (window.innerWidth / 2.0)) / 10000) + (xOffset * 5)) / 6;
+  yOffset = (((mouseY - (window.innerHeight / 2.0)) / 10000) + (yOffset * 5)) / 6;
 
   var aRed = cRed;
   var aGreen = cGreen;
