@@ -12,7 +12,6 @@ function setup() {
 }
 
 function draw() {
-
   xOffset = (((mouseX - (window.innerWidth / 2.0)) / 10000) + (xOffset * 5)) / 6;
   yOffset = (((mouseY - (window.innerHeight / 2.0)) / 10000) + (yOffset * 5)) / 6;
 
