@@ -7,9 +7,9 @@ var objects;
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
-	gRed = random(100, 200);
-  gGreen = random(100, 200);
-  gBlue = random(100, 200);
+	gRed = random(200, 255);
+  gGreen = random(200, 255);
+  gBlue = random(200, 255);
 	background(gRed, gGreen, gBlue);
 
 	objects = [];
@@ -22,7 +22,7 @@ function setup() {
 
 function draw() {
 	background(gRed, gGreen, gBlue);
-  stroke(gRed + 40, gGreen + 40, gBlue + 40, 150);
+  stroke(gRed - 40, gGreen - 40, gBlue - 40, 150);
 	strokeWeight(20);
 	fill(0, 0, 0, 0);
 	for (var i = 0; i < objects.length; i++) {
