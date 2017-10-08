@@ -25,8 +25,8 @@ function draw() {
 	fill(0, 0, 0, 0);
 	for (var i = 0; i < objects.length; i++) {
 		var object = objects[i];
-		var x = (Math.sin(frameCount / (10000 / i) + object.x) * (window.innerWidth - 100)) + 50;
-		x += mouseX / i;
+		var x = (Math.sin(frameCount / (100000 / i) + object.x) * (window.innerWidth - 100)) + 50;
+		x += mouseX / (i * 2);
 		line(x, 0, x + ((i % 2 == 0 ? 4 : -4) * window.innerWidth / objects.length), window.innerHeight);
 	}
 }
