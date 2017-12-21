@@ -32,10 +32,6 @@ function draw() {
 	cTranslateX = ((accelerationX * 10) + (cTranslateX * 5)) / 6;
 	cTranslateY = ((accelerationY * 10) + (cTranslateY * 5)) / 6;
 	cTranslateZ = ((accelerationZ * 10) + (cTranslateZ * 5)) / 6;
-	if (windowWidth < 1000) {
-		graphics.translate(cTranslateX + 75 - (windowWidth / 2), cTranslateY + 75 - (windowHeight / 2));
-	} else graphics.translate(cTranslateX, cTranslateY);
-	graphics.scale(cTranslateZ > 0 ? Math.min(3, 1 + (cTranslateZ / 10000)) : Math.max(1 - Math.abs(cTranslateZ / 50000), 0));
 
   if (rotationX > 0 || rotationY > 0 || rotationZ > 0) {
     cRotationX = (cRotationX - radians(rotationX)) / 2;
@@ -46,12 +42,23 @@ function draw() {
     cRotationZ = (cRotationZ + (Math.PI * (0.5 - (mouseX / windowWidth)))) / 2;
   }
 
+	cTranslateX += 10 * Math.cos((Math.PI / 2) - cRotationZ);
+	cTranslateY += 10 * Math.sin((Math.PI / 2) - cRotationZ);
+	if (cRotationX < -Math.PI / 2)
+		cTranslateY += 10 * Math.sin((Math.PI / 2) + cRotationX) - 10;
+	else cTranslateY += 10 * Math.sin(cRotationX + (Math.PI / 2)) - 10;
+
+	if (windowWidth < 1000) {
+		graphics.translate(cTranslateX + 75 - (windowWidth / 2), cTranslateY + 75 - (windowHeight / 2));
+	} else graphics.translate(cTranslateX, cTranslateY);
+	graphics.scale(cTranslateZ > 0 ? Math.min(3, 1 + (cTranslateZ / 10000)) : Math.max(1 - Math.abs(cTranslateZ / 50000), 0));
+
 	graphics.rotateX(cRotationX);
 	graphics.rotateY(cRotationY);
 	graphics.rotateZ(cRotationZ);
 
   graphics.pointLight(200, 20, 20, 0, windowHeight / 2, 0);
-  graphics.ambientMaterial(20);
+  graphics.ambientMaterial(20, 20, 20, 220);
   graphics.model(dagger);
 
   image(graphics, 0, 0);
