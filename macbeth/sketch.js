@@ -6,20 +6,27 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   graphics = createGraphics(windowWidth, windowHeight, WEBGL);
   dagger = loadModel("dagger.obj", true);
-  //capture = createCapture(VIDEO);
-  //capture.size(windowWidth, windowHeight);
+  capture = createCapture({
+    audio: false,
+    video: {
+      facingMode: "environment",
+			width: windowWidth,
+			height: windowHeight
+    }
+  });
+  capture.size(windowWidth, windowHeight);
 }
 
 function draw() {
   graphics.resetMatrix();
   graphics.background(0, 0, 0, 0);
   background(200);
-  //image(capture, 0, 0, windowWidth, windowHeight);
+  image(capture, 0, 0, windowWidth, windowHeight);
 
 	if (windowWidth < 1000) {
 		graphics.translate(75 - (windowWidth / 2), 75 - (windowHeight / 2));
 	}
-	
+
   if (rotationX > 0 || rotationY > 0 || rotationZ > 0) {
     graphics.rotateX(-radians(rotationX));
     graphics.rotateY(-radians(rotationY));
