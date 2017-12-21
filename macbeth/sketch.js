@@ -1,6 +1,12 @@
 var dagger;
 var capture;
 var graphics;
+var cRotationX = 0;
+var cRotationY = 0;
+var cRotationZ = 0;
+var translateX = 0;
+var translateY = 0;
+var translateZ = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -23,18 +29,26 @@ function draw() {
   background(200);
   image(capture, 0, 0, windowWidth, windowHeight);
 
+	translateX = ((accelerationX * 10) + translateX) / 2;
+	translateY = ((accelerationY * 10) + translateY) / 2;
+	translateZ = ((accelerationZ * 10) + translateZ) / 2;
 	if (windowWidth < 1000) {
-		graphics.translate(75 - (windowWidth / 2), 75 - (windowHeight / 2));
-	}
+		graphics.translate(translateX + 75 - (windowWidth / 2), translateY + 75 - (windowHeight / 2));
+	} else graphics.translate(translateX, translateY);
+	graphics.scale(translateZ > 0 ? 1 + translateZ : 1 - Math.abs(translateZ / 1000));
 
   if (rotationX > 0 || rotationY > 0 || rotationZ > 0) {
-    graphics.rotateX(-radians(rotationX));
-    graphics.rotateY(-radians(rotationY));
-    graphics.rotateZ(-radians(rotationZ));
+    cRotationX = (cRotationX - radians(rotationX)) / 2;
+    cRotationY = (cRotationY - radians(rotationY)) / 2;
+    cRotationZ = (cRotationZ - radians(rotationZ)) / 2;
   } else {
-    graphics.rotateX(Math.PI * -(mouseY / windowHeight));
-    graphics.rotateZ(Math.PI * (0.5 - (mouseX / windowWidth)));
+    cRotationX = (cRotationX + (Math.PI * -(mouseY / windowHeight))) / 2;
+    cRotationZ = (cRotationZ + (Math.PI * (0.5 - (mouseX / windowWidth)))) / 2;
   }
+
+	graphics.rotateX(cRotationX);
+	graphics.rotateY(cRotationY);
+	graphics.rotateZ(cRotationZ);
 
   graphics.pointLight(100, 100, 100, 0, windowHeight / 2, 0);
   graphics.ambientMaterial(50);
