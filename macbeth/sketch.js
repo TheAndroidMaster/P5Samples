@@ -35,7 +35,7 @@ function draw() {
 	if (windowWidth < 1000) {
 		graphics.translate(translateX + 75 - (windowWidth / 2), translateY + 75 - (windowHeight / 2));
 	} else graphics.translate(translateX, translateY);
-	graphics.scale(translateZ > 0 ? 1 + translateZ : 1 - Math.abs(translateZ / 1000));
+	graphics.scale(translateZ > 0 ? 1 + translateZ : Math.max(1 - Math.abs(translateZ / 1000), 0));
 
   if (rotationX > 0 || rotationY > 0 || rotationZ > 0) {
     cRotationX = (cRotationX - radians(rotationX)) / 2;
