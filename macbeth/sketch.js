@@ -29,9 +29,9 @@ function draw() {
   background(200);
   image(capture, 0, 0, windowWidth, windowHeight);
 
-	cTranslateX = ((accelerationX * 10) + (cTranslateX * 5) / 6;
-	cTranslateY = ((accelerationY * 10) + (cTranslateY * 5) / 6;
-	cTranslateZ = ((accelerationZ * 10) + (cTranslateZ * 5) / 6;
+	cTranslateX = ((accelerationX * 10) + (cTranslateX * 5)) / 6;
+	cTranslateY = ((accelerationY * 10) + (cTranslateY * 5)) / 6;
+	cTranslateZ = ((accelerationZ * 10) + (cTranslateZ * 5)) / 6;
 	if (windowWidth < 1000) {
 		graphics.translate(cTranslateX + 75 - (windowWidth / 2), cTranslateY + 75 - (windowHeight / 2));
 	} else graphics.translate(cTranslateX, cTranslateY);
