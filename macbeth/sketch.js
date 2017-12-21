@@ -16,7 +16,6 @@ function draw() {
   background(200);
   image(capture, 0, 0, window.innerWidth, window.innerHeight);
 
-  graphics.scale(3);
   if (rotationX > 0 || rotationY > 0 || rotationZ > 0) {
     graphics.rotateX(-radians(rotationX));
     graphics.rotateY(-radians(rotationY));
