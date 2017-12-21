@@ -34,9 +34,21 @@ function draw() {
 	cTranslateZ = ((accelerationZ * 10) + (cTranslateZ * 5)) / 6;
 
   if (rotationX > 0 || rotationY > 0 || rotationZ > 0) {
-    cRotationX = (cRotationX - radians(rotationX)) / 2;
-    cRotationY = (cRotationY - radians(rotationY)) / 2;
-    cRotationZ = (cRotationZ - radians(rotationZ)) / 2;
+		var tempRotationX = -radians(rotationX);
+		var tempRotationY = -radians(rotationY);
+		var tempRotationZ = -radians(rotationZ);
+
+    if (Math.abs(Math.sin(cRotationX) - Math.sin(tempRotationX)) < 0.1)
+			cRotationX = tempRotationX;
+		else cRotationX = (cRotationX - radians(rotationX)) / 2;
+
+		if (Math.abs(Math.sin(cRotationY) - Math.sin(tempRotationY)) < 0.1)
+			cRotationY = tempRotationY;
+		else cRotationY = (cRotationY - radians(rotationY)) / 2;
+
+		if (Math.abs(Math.sin(cRotationZ) - Math.sin(tempRotationZ)) < 0.1)
+			cRotationZ = tempRotationZ;
+		else cRotationZ = (cRotationZ - radians(rotationZ)) / 2;
   } else {
     cRotationX = (cRotationX + (Math.PI * -(mouseY / windowHeight))) / 2;
     cRotationZ = (cRotationZ + (Math.PI * (0.5 - (mouseX / windowWidth)))) / 2;
