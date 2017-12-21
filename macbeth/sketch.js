@@ -50,8 +50,8 @@ function draw() {
 	graphics.rotateY(cRotationY);
 	graphics.rotateZ(cRotationZ);
 
-  graphics.pointLight(100, 100, 100, 0, windowHeight / 2, 0);
-  graphics.ambientMaterial(50);
+  graphics.pointLight(200, 20, 20, 0, windowHeight / 2, 0);
+  graphics.ambientMaterial(20);
   graphics.model(dagger);
 
   image(graphics, 0, 0);
