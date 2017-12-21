@@ -16,7 +16,10 @@ function draw() {
   background(200);
   //image(capture, 0, 0, windowWidth, windowHeight);
 
-  graphics.translate(-windowWidth / 8, -windowHeight / 8);
+	if (windowWidth < 1000) {
+		graphics.translate(75 - (windowWidth / 2), 75 - (windowHeight / 2));
+	}
+	
   if (rotationX > 0 || rotationY > 0 || rotationZ > 0) {
     graphics.rotateX(-radians(rotationX));
     graphics.rotateY(-radians(rotationY));
@@ -25,8 +28,6 @@ function draw() {
     graphics.rotateX(Math.PI * -(mouseY / windowHeight));
     graphics.rotateZ(Math.PI * (0.5 - (mouseX / windowWidth)));
   }
-
-  //graphics.translate(-windowWidth / 2, -windowHeight / 2, -0.5);
 
   graphics.pointLight(100, 100, 100, 0, windowHeight / 2, 0);
   graphics.ambientMaterial(50);
