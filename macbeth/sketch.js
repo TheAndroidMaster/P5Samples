@@ -4,9 +4,9 @@ var graphics;
 var cRotationX = 0;
 var cRotationY = 0;
 var cRotationZ = 0;
-var translateX = 0;
-var translateY = 0;
-var translateZ = 0;
+var cTranslateX = 0;
+var cTranslateY = 0;
+var cTranslateZ = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -29,13 +29,13 @@ function draw() {
   background(200);
   image(capture, 0, 0, windowWidth, windowHeight);
 
-	translateX = ((accelerationX * 10) + (translateX * 5) / 6;
-	translateY = ((accelerationY * 10) + (translateY * 5) / 6;
-	translateZ = ((accelerationZ * 10) + (translateZ * 5) / 6;
+	cTranslateX = ((accelerationX * 10) + (cTranslateX * 5) / 6;
+	cTranslateY = ((accelerationY * 10) + (cTranslateY * 5) / 6;
+	cTranslateZ = ((accelerationZ * 10) + (cTranslateZ * 5) / 6;
 	if (windowWidth < 1000) {
-		graphics.translate(translateX + 75 - (windowWidth / 2), translateY + 75 - (windowHeight / 2));
-	} else graphics.translate(translateX, translateY);
-	graphics.scale(translateZ > 0 ? Math.min(3, 1 + (translateZ / 10000)) : Math.max(1 - Math.abs(translateZ / 50000), 0));
+		graphics.translate(cTranslateX + 75 - (windowWidth / 2), cTranslateY + 75 - (windowHeight / 2));
+	} else graphics.translate(cTranslateX, cTranslateY);
+	graphics.scale(cTranslateZ > 0 ? Math.min(3, 1 + (cTranslateZ / 10000)) : Math.max(1 - Math.abs(cTranslateZ / 50000), 0));
 
   if (rotationX > 0 || rotationY > 0 || rotationZ > 0) {
     cRotationX = (cRotationX - radians(rotationX)) / 2;
