@@ -16,7 +16,7 @@ function setup() {
     audio: false,
     video: {
       facingMode: "environment",
-			width: windowWidth,
+      width: windowWidth,
 			height: windowHeight
     }
   });
@@ -28,6 +28,7 @@ function draw() {
   graphics.background(0, 0, 0, 0);
   background(200);
   image(capture, 0, 0, windowWidth, windowHeight);
+  background(200, 200, 200, 100);
 
 	cTranslateX = ((accelerationX * 10) + (cTranslateX * 5)) / 6;
 	cTranslateY = ((accelerationY * 10) + (cTranslateY * 5)) / 6;

@@ -1,6 +1,8 @@
 var diff;
 var xOffset, yOffset;
 var gRed, gGreen, gBlue;
+var cRed, cGreen, cBlue;
+var cRedD, cGreenD, cBlueD;
 
 var objects;
 
@@ -9,6 +11,12 @@ function setup() {
 	gRed = random(200, 255);
   gGreen = random(200, 255);
   gBlue = random(200, 255);
+  cRed = 255;
+  cGreen = 255;
+  cBlue = 255;
+  cRedD = 255;
+  cGreenD = 255;
+  cBlueD = 255;
 	background(gRed, gGreen, gBlue);
 
 	objects = [];
@@ -19,8 +27,15 @@ function setup() {
 }
 
 function draw() {
-	background(gRed, gGreen, gBlue);
-  stroke(gRed - 40, gGreen - 40, gBlue - 40, 150);
+  cRed = ((cRed * 99) + gRed) / 100;
+  cGreen = ((cGreen * 99) + gGreen) / 100;
+  cBlue = ((cBlue * 99) + gBlue) / 100;
+  cRedD = ((cRedD * 99) + gRed - 40) / 100;
+  cGreenD = ((cGreenD * 99) + gGreen - 40) / 100;
+  cBlueD = ((cBlueD * 99) + gBlue - 40) / 100;
+
+	background(cRed, cBlue, cBlue);
+  stroke(cRedD, cBlueD, cBlueD, 150);
 	strokeWeight(50);
 	fill(0, 0, 0, 0);
 	for (var i = 0; i < objects.length; i++) {
