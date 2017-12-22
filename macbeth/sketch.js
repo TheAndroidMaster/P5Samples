@@ -20,7 +20,6 @@ function setup() {
 			height: windowHeight
     }
   });
-  capture.size(windowWidth, windowHeight);
 }
 
 function draw() {
