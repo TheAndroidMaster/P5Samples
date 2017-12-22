@@ -70,7 +70,8 @@ function draw() {
 	graphics.rotateZ(cRotationZ);
 
   graphics.pointLight(200, 20, 20, 0, windowHeight / 2, 0);
-  graphics.ambientMaterial(20, 20, 20, 220);
+	var alphaX = frameCount / 150;
+  graphics.ambientMaterial(20, 20, 20, (Math.pow(Math.sin(alphaX), 2) - Math.cos(alphaX + 4) + Math.atan(Math.pow(alphaX, 2))) * 60);
   graphics.model(dagger);
 
   image(graphics, 0, 0);
