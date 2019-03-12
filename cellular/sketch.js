@@ -166,6 +166,28 @@ function rSet(rx, ry, value, grid) {
 }
 
 /**
+ * Calculate the amount of neighbors of
+ * a particular cell on the grid.
+ *
+ * @param x         The x coordinate.
+ * @param y         The y coordinate.
+ * @param grid      The grid to use.
+ */
+function getNeighbors(x, y, grid) {
+    let neighbors = 0;
+    neighbors += rGet(x-1, y-1, grid);
+    neighbors += rGet(x-1, y,   grid);
+    neighbors += rGet(x-1, y+1, grid);
+    neighbors += rGet(x,   y-1, grid);
+    neighbors += rGet(x,   y+1, grid);
+    neighbors += rGet(x+1, y-1, grid);
+    neighbors += rGet(x+1, y,   grid);
+    neighbors += rGet(x+1, y+1, grid);
+    
+    return neighbors;
+}
+
+/**
  * Mutate the grid according to the rules
  * of Conway's Game of Life - cellular automata.
  */
@@ -175,15 +197,7 @@ function mutate() {
 
     for (let y = 0; y < my; y++) {
         for (let x = 0; x < mx; x++) {
-            let neighbors = 0;
-            neighbors += rGet(x-1, y-1);
-            neighbors += rGet(x-1, y);
-            neighbors += rGet(x-1, y+1);
-            neighbors += rGet(x, y-1);
-            neighbors += rGet(x, y+1);
-            neighbors += rGet(x+1, y-1);
-            neighbors += rGet(x+1, y);
-            neighbors += rGet(x+1, y+1);
+            let neighbors = getNeighbors(x, y);
 
             if (rGet(x, y) && (neighbors < 2 || neighbors > 3))
                 rSet(x, y, 0, newGrid);
@@ -196,6 +210,30 @@ function mutate() {
     }
 
     _grid = newGrid;
+
+    if (_mutation % 10 == 0) {
+        let x = Math.floor(Math.random() * mx);
+        let y = Math.floor(Math.random() * my);
+        if (getNeighbors(x, y) == 0) {
+            overlay(x, y, [
+                [0, 1, 0],
+                [0, 0, 1],
+                [1, 1, 1]
+            ]);
+        }
+    }
+}
+
+/**
+ * Overlay a set of values onto a larger
+ * grid at a set of coordinates.
+ */
+function overlay(x, y, section, grid) {
+    for (let dy = 0; dy < section.length; dy++) {
+        for (let dx = 0; dx < section[dy].length; dx++) {
+            rSet(x + dx, y + dy, section[dy][dx], grid);
+        }
+    }
 }
 
 /**
@@ -203,12 +241,13 @@ function mutate() {
  * where the mouse was clicked.
  */
 function mouseClicked() {
-    let cx = Math.round((mouseX / _cellSize) - 0.5);
-    let cy = Math.round((mouseY / _cellSize) - 0.5);
-
-    rSet(cx + 1, cy, 1);
-    rSet(cx + 2, cy + 1, 1);
-    rSet(cx, cy + 2, 1);
-    rSet(cx + 1, cy + 2, 1);
-    rSet(cx + 2, cy + 2, 1);
+    overlay(
+        Math.round((mouseX / _cellSize) - 0.5),
+        Math.round((mouseY / _cellSize) - 0.5),
+        [
+            [0, 1, 0],
+            [0, 0, 1],
+            [1, 1, 1]
+        ]
+    );
 }
