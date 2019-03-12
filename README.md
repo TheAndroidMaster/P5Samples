@@ -6,3 +6,4 @@ Projects:
 - [Paint](https://jfenn.me/P5Samples/paint/)
 - [Slinky](https://jfenn.me/P5Samples/slinky/)
 - [Lines](https://jfenn.me/P5Samples/lines/)
+- [Cellular Automata (Conway's Game of Life)](https://jfenn.me/P5Samples/cellular/)
